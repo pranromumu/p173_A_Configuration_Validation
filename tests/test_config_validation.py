@@ -8,7 +8,7 @@ from framework.config.settings import Settings
 def test_valid_configuration():
     settings = Settings()
     settings.validate()
-def test_enpty_base_url_failes():
+def test_enpty_base_url_fails():
     settings = Settings(BASE_URL="")
     with pytest.raises(ValueError,match="BASE_URL cannot be empty"):
         settings.validate()
@@ -16,7 +16,7 @@ def test_invalid_browser_failes():
     settings = Settings(BROWSER="chrome123")
     with pytest.raises(ValueError,match="BROWSER must be one of"):
         settings.validate()
-def test_nevigate_timeout_fails():
+def test_negative_timeout_fails():
     settings = Settings(TIMEOUT=-500)
     with pytest.raises(ValueError, match="TIMEOUT must be an integer greater than 0"):
         settings.validate()
